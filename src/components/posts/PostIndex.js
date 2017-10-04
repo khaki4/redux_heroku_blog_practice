@@ -27,7 +27,7 @@ class PostIndex extends Component {
     })
   }
   render () {
-    console.log(this.props.posts)
+    console.log(this.props.originalPosts)
     return (
       <div>
         <h3>Post 목록</h3>
@@ -36,7 +36,7 @@ class PostIndex extends Component {
         </List>
         <PostCreatModal />
         <PostCategories
-          posts={this.props.posts}
+          posts={this.props.originalPosts}
         />
       </div>
     )
@@ -45,7 +45,8 @@ class PostIndex extends Component {
 
 export default connect(
   (state, ownProps) => ({
-    posts: getVisiblePosts(state.dashboard.posts, ownProps.match.params.filter)
+    posts: getVisiblePosts(state.dashboard.posts, ownProps.match.params.filter),
+    originalPosts: state.dashboard.posts,
   }),
   { loadPosts }
 )(PostIndex)
