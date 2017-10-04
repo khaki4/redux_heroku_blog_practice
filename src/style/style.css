@@ -1,0 +1,7 @@
+.button-group {
+    display: flex;
+    flex-direction: row;
+}
+.button-group.right {
+    justify-content: flex-end;
+}
