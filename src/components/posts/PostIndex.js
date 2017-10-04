@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import map from 'lodash/map'
+import { List } from 'semantic-ui-react'
 import PostCreatModal from './PostAddButton';
 
 import { loadPosts } from '../../reducers/post/index';
@@ -13,7 +15,15 @@ class PostIndex extends Component {
     const { posts } = this.props
     if (!posts) return <div>Loading...</div>
     return map(posts, post => {
-      return <li key={post.id}>{post.title}</li>
+      return (
+        <List.Item>
+          <List.Content>
+            <Link to={`/posts/${post.id}`}>
+              {post.title}
+            </Link>
+          </List.Content>
+        </List.Item>
+      )
     })
   }
   render () {
@@ -21,9 +31,9 @@ class PostIndex extends Component {
     return (
       <div>
         <h3>Post 목록</h3>
-        <ul className="list-group">
+        <List divided verticalAlign='middle' size="large">
           {this.renderPosts()}
-        </ul>
+        </List>
         <PostCreatModal />
       </div>
     )
