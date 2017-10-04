@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import map from 'lodash/map'
 import { List } from 'semantic-ui-react'
 import PostCreatModal from './PostAddButton';
-
-import { loadPosts } from '../../reducers/post/index';
+import PostCategories from './PostCategories'
+import { loadPosts, getVisiblePosts } from '../../reducers/post/index';
 
 class PostIndex extends Component {
   componentDidMount() {
@@ -16,7 +16,7 @@ class PostIndex extends Component {
     if (!posts) return <div>Loading...</div>
     return map(posts, post => {
       return (
-        <List.Item>
+        <List.Item key={post.id}>
           <List.Content>
             <Link to={`/posts/${post.id}`}>
               {post.title}
@@ -35,12 +35,17 @@ class PostIndex extends Component {
           {this.renderPosts()}
         </List>
         <PostCreatModal />
+        <PostCategories
+          posts={this.props.posts}
+        />
       </div>
     )
   }
 }
 
 export default connect(
-  state => ({ posts: state.dashboard.posts }),
+  (state, ownProps) => ({
+    posts: getVisiblePosts(state.dashboard.posts, ownProps.match.params.filter)
+  }),
   { loadPosts }
 )(PostIndex)
