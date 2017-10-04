@@ -12,7 +12,8 @@ const MODAL_WINDOW_CHANGE = 'blog_heroku_api/posts/MODAL_WINDOW_CHANGE'
 export const fetchPosts = (posts) => ({type: POST_FETCH, payload: posts})
 export const changeModalWindow = (isOpen) => ({ type: MODAL_WINDOW_CHANGE, payload: isOpen })
 export const addPost = (post) => ({ type: POST_ADD, payload: post })
-export const savePost = (post) => (dispatch) => {
+export const savePost = (post, resetForm) => (dispatch) => {
+  resetForm()
   createPost(post)
     .then((res) => {
       dispatch(addPost(res))

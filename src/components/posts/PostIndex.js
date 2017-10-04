@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import map from 'lodash/map'
-import { List } from 'semantic-ui-react'
+import { List, Grid } from 'semantic-ui-react'
 import PostCreatModal from './PostAddButton';
 import PostCategories from './PostCategories'
-import { loadPosts, getVisiblePosts } from '../../reducers/post/index';
+import { loadPosts, getVisiblePosts } from '../../reducers/post/postIndex';
 
 class PostIndex extends Component {
   componentDidMount() {
@@ -27,17 +27,25 @@ class PostIndex extends Component {
     })
   }
   render () {
-    console.log(this.props.originalPosts)
     return (
       <div>
-        <h3>Post 목록</h3>
-        <List divided verticalAlign='middle' size="large">
-          {this.renderPosts()}
-        </List>
-        <PostCreatModal />
-        <PostCategories
-          posts={this.props.originalPosts}
-        />
+        <Grid columns={2} divided>
+          <Grid.Row>
+            <Grid.Column>
+              <h3>Post List</h3>
+              <List divided verticalAlign='middle' size="large">
+                {this.renderPosts()}
+              </List>
+              <PostCreatModal />
+            </Grid.Column>
+            <Grid.Column>
+              <h3>Post Categories</h3>
+              <PostCategories
+                posts={this.props.originalPosts}
+              />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </div>
     )
   }

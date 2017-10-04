@@ -8,7 +8,7 @@ import {
   SelectField
 } from 'react-semantic-redux-form';
 import { Button, Header, Modal, Form, Segment } from 'semantic-ui-react';
-import { changeModalWindow, savePost } from '../../reducers/post/index';
+import { changeModalWindow, savePost } from '../../reducers/post/postIndex';
 
 const getValueList = () => {
   const options = ['Life', 'Hobby', 'test', '분류 없음'];
@@ -25,7 +25,7 @@ const getValueList = () => {
 const PostCreatModal = props => {
   if (!props) return null;
   
-  const { modal, handleSubmit, changeModalWindow, savePost } = props;
+  const { modal, handleSubmit, reset, changeModalWindow, savePost } = props;
   const handleOpen = () => changeModalWindow(true);
   const onAddPostClick = values => {
     if (!values.title) return;
@@ -37,7 +37,7 @@ const PostCreatModal = props => {
       content,
       isPrivate: !!isPrivate
     };
-    savePost(newPost);
+    savePost(newPost, reset);
   };
   return (
     <Modal

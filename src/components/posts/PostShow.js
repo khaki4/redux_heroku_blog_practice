@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
-import { loadPosts, deletePost } from '../../reducers/post/index'
+import { loadPosts, deletePost } from '../../reducers/post/postIndex'
 
 class PostShow extends Component {
   componentDidMount() {

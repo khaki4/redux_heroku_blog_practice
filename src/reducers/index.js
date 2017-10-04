@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import PostsReducer from './post/index'
+import PostsReducer from './post/postIndex'
 
 const rootReducer = combineReducers({
   dashboard: PostsReducer,
