@@ -42,7 +42,7 @@ const PostCreatModal = props => {
   return (
     <Modal
       className="modal__content"
-      trigger={<Button onClick={handleOpen}>포스트 생성</Button>}
+      trigger={<Button primary onClick={handleOpen}>포스트 생성</Button>}
       basic
       size="small"
       open={modal.isOpen}
